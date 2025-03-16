@@ -5,7 +5,7 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder"
-    "release": "electron-builder --publish=always"  // Add this line
+    "release": "electron-builder --publish=always" 
 
   },
   "keywords": [],
