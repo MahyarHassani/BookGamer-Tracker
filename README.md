@@ -57,6 +57,7 @@ For Windows users who prefer a simple installation process:
 1️⃣ Download the Executable:
 
 Download: https://drive.google.com/file/d/1vH1-cpCWUfJCEmx4pMFkQXi_l8amRuga/view?usp=sharing
+
 Download for the MAC os: https://github.com/MahyarHassani/BookGamer-Tracker/releases
 
 2️⃣ Run the Installer:
