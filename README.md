@@ -16,10 +16,13 @@ Whether you're a bookworm, a gamer, or both, this app provides an intuitive way 
 ----------------------------------------------
 
 ## ✨ Features
-✅ Easily add, edit, and remove books and games.
-✅ Local storage support (no internet required).
-✅ Cross-platform compatibility (Windows, macOS, Linux).
-✅ User-friendly interface for quick access to your collection.
+- ✅ Easily add, edit, and remove books and games.
+
+- ✅ Local storage support (no internet required).
+
+- ✅ Cross-platform compatibility (Windows, macOS, Linux).
+
+- ✅ User-friendly interface for quick access to your collection.
 
 --------------------------------------------------------
 
@@ -82,7 +85,6 @@ Use the edit (✏️) or delete (🗑) icons to modify or remove items.
 Here’s a preview of BookGamer Tracker in action:
 ![Capture_2025_03_16_03_53_52_692](https://github.com/user-attachments/assets/df92d8f4-8c03-4d5a-8998-2784550019cc)
 ![Capture_2025_03_16_03_51_33_993](https://github.com/user-attachments/assets/3e96ea42-f9da-49a6-8ea5-14eb4f7fdf4b)
-![Capture_2025_03_15_03_22_41_107](https://github.com/user-attachments/assets/0f59549e-900a-41db-989c-eca0760d574f)
 ![Capture_2025_03_16_03_51_25_311](https://github.com/user-attachments/assets/33fdaf89-5e53-4d22-b53a-5cf87f5c7a9a)
 
 ---------------------------------------------------------
