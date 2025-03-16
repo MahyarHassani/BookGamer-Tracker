@@ -24,6 +24,10 @@
       "target": "nsis",
       "icon": "assets/icon.ico"
     },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns"
+    },
     "files": [
       "main.js",
       "index.html",
