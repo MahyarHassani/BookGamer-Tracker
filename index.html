@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookGamer Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    h1 {
+      color: rgb(255, 255, 255);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <i class="fas fa-book-reader"></i>
+        <h1>Personal Book/Game Tracker</h1>
+      </div>
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-input" placeholder="Search books or games..." aria-label="Search books or games">
+      </div>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-moon"></i>
+      </button>
+    </header>
+
+    <nav class="app-nav">
+      <div class="tabs">
+        <button class="tab active" data-tab="books-content">
+          <i class="fas fa-book"></i>
+          <span>Books</span>
+        </button>
+        <button class="tab" data-tab="games-content">
+          <i class="fas fa-gamepad"></i>
+          <span>Games</span>
+        </button>
+      </div>
+    </nav>
+
+    <main class="app-content">
+      <div id="books-content" class="content fade-in">
+        <div class="content-header">
+          <h1>My Books</h1>
+          <button id="add-book" class="btn-add" aria-label="Add new book">
+            <i class="fas fa-plus"></i> Add Book
+          </button>
+        </div>
+
+        <div class="stats-bar">
+          <div class="stat-item">
+            <span class="stat-value" id="total-books">0</span>
+            <span class="stat-label">Total Books</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="reading-books">0</span>
+            <span class="stat-label">Reading</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="finished-books-count">0</span>
+            <span class="stat-label">Finished</span>
+          </div>
+        </div>
+
+        <section id="currently-reading" class="collection-section">
+          <h2>Currently Reading</h2>
+        </section>
+
+        <section id="finished-books" class="collection-section">
+          <h2>Finished</h2>
+        </section>
+      </div>
+
+      <div id="games-content" class="content hidden">
+        <div class="content-header">
+          <h1>My Games</h1>
+          <button id="add-game" class="btn-add">
+            <i class="fas fa-plus"></i> Add Game
+          </button>
+        </div>
+
+        <div class="stats-bar">
+          <div class="stat-item">
+            <span class="stat-value" id="total-games">0</span>
+            <span class="stat-label">Total Games</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="playing-games">0</span>
+            <span class="stat-label">Playing</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="completed-games-count">0</span>
+            <span class="stat-label">Completed</span>
+          </div>
+        </div>
+
+        <div class="filter-container">
+          <div class="filter-label">
+            <i class="fas fa-filter"></i>
+            <span>Filter by genre:</span>
+          </div>
+          <div id="genre-filters" class="filter-options">
+            <button class="filter-option active-filter" value="all">All Genres</button>
+          </div>
+          <select id="genre-select" class="hidden">
+            <option value="all">All Genres</option>
+          </select>
+        </div>
+
+        <section id="currently-playing" class="collection-section">
+          <h2>Currently Playing</h2>
+        </section>
+
+        <section id="completed-games" class="collection-section">
+          <h2>Completed</h2>
+        </section>
+      </div>
+    </main>
+
+    <div id="loading-spinner" class="hidden">
+      <div class="spinner"></div>
+    </div>
+
+    <div class="empty-state">
+      <div class="empty-icon">📚</div>
+      <h3>No Books Found</h3>
+      <p>Try adding a new book or adjusting your search</p>
+    </div>
+  </div>
+
+  <!-- Book Form Modal -->
+  <div id="book-form" class="modal-form">
+    <h2 id="book-form-title">Add New Book</h2>
+    <form id="book-form-element">
+      <div class="form-group">
+        <label for="book-title">Title</label>
+        <div class="input-with-button">
+          <input type="text" id="book-title" placeholder="Enter book title">
+          <button type="button" id="search-book-btn" class="search-button" onclick="searchBookTitle()">Search</button>
+        </div>
+        <span class="error-message">Title is required</span>
+      </div>
+      <div class="form-group">
+        <label for="book-author">Author</label>
+        <input type="text" id="book-author" placeholder="Enter author name">
+        <span class="error-message">Author is required</span>
+      </div>
+      <div class="form-group">
+        <label for="book-genre">Genre</label>
+        <input type="text" id="book-genre" placeholder="Enter genre (e.g. Fiction, Non-Fiction)">
+        <span class="error-message">Genre is required</span>
+      </div>
+      <div class="form-group">
+        <label for="book-progress">Progress <span id="progress-value">0%</span></label>
+        <input type="range" id="book-progress" min="0" max="100" value="0">
+      </div>
+      <div class="form-group">
+        <label for="book-image">Image URL (optional)</label>
+        <input type="text" id="book-image" placeholder="Enter image URL">
+        <p class="help-text">To get the image URL, right-click on the image and select "Copy image address".</p>
+      </div>
+      <div class="form-actions">
+        <button type="button" id="cancel-book" class="btn-cancel">Cancel</button>
+        <button type="button" id="save-book" class="btn-save">Save Book</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="game-form" class="modal-form">
+    <h2 id="game-form-title">Add New Game</h2>
+    <form id="game-form-element">
+      <div class="form-group">
+        <label for="game-title">Title</label>
+        <div class="input-with-button">
+          <input type="text" id="game-title" placeholder="Enter game title">
+          <button type="button" id="search-game-btn" class="search-button" onclick="searchGameTitle()">Search</button>
+        </div>
+        <span class="error-message">Title is required</span>
+      </div>
+      <div class="form-group">
+        <label for="game-genre">Genre</label>
+        <input type="text" id="game-genre" placeholder="Enter genre (e.g. Educational, Fantasy)">
+        <span class="error-message">Genre is required</span>
+      </div>
+      <div class="form-group">
+        <label for="game-platform">Platform</label>
+        <input type="text" id="game-platform" placeholder="Enter platform (e.g. PC, PlayStation)">
+        <span class="error-message">Platform is required</span>
+      </div>
+      <div class="form-group">
+        <label for="game-progress">Progress <span id="game-progress-value">0%</span></label>
+        <input type="range" id="game-progress" min="0" max="100" value="0">
+      </div>
+      <div class="form-group">
+        <label for="game-image">Image URL (optional)</label>
+        <input type="text" id="game-image" placeholder="Enter image URL">
+        <p class="help-text">To get the image URL, right-click on the image and select "Copy image address".</p>
+      </div>
+      <div class="form-actions">
+        <button type="button" id="cancel-game" class="btn-cancel">Cancel</button>
+        <button type="button" id="save-game" class="btn-save">Save Game</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="modal-overlay" class="modal-overlay"></div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
